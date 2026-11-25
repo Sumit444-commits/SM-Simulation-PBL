@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+results/raw.pkl
+results/per_replication.csv
+report/*.aux
+report/*.log
+report/*.out

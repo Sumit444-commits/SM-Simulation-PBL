@@ -1,0 +1,203 @@
+{
+  "params": {
+    "fleet_size": 40,
+    "capacity": 50,
+    "mean_oneway_min": 25.0,
+    "travel_cv": 0.18,
+    "congestion_factor": 1.15,
+    "incident_prob": 0.04,
+    "incident_mean_min": 8.0,
+    "alight_min": 1.0,
+    "layover_min": 2.0,
+    "dwell_base_min": 0.5,
+    "dwell_per_pax_min": 0.013333333333333334,
+    "demand_scale": 1.0,
+    "day_demand_cv": 0.12,
+    "day_traffic_cv": 0.08,
+    "max_drain_min": 240.0
+  },
+  "periods": [
+    {
+      "name": "morning",
+      "clock0": "07:00",
+      "rate_A": [
+        [
+          0,
+          5
+        ],
+        [
+          30,
+          14
+        ],
+        [
+          60,
+          24
+        ],
+        [
+          90,
+          26
+        ],
+        [
+          120,
+          19
+        ],
+        [
+          150,
+          8
+        ],
+        [
+          180,
+          3
+        ]
+      ],
+      "rate_B": [
+        [
+          0,
+          2.5
+        ],
+        [
+          180,
+          2.5
+        ]
+      ],
+      "heavy": 0,
+      "peak_window": [
+        60,
+        120
+      ],
+      "congestion_window": [
+        45,
+        135
+      ],
+      "static_peak_window": [
+        30,
+        150
+      ],
+      "horizon": 180.0
+    },
+    {
+      "name": "afternoon",
+      "clock0": "13:30",
+      "rate_A": [
+        [
+          0,
+          2.5
+        ],
+        [
+          180,
+          2.5
+        ]
+      ],
+      "rate_B": [
+        [
+          0,
+          4
+        ],
+        [
+          30,
+          20
+        ],
+        [
+          60,
+          25
+        ],
+        [
+          90,
+          25
+        ],
+        [
+          120,
+          18
+        ],
+        [
+          150,
+          7
+        ],
+        [
+          180,
+          3
+        ]
+      ],
+      "heavy": 1,
+      "peak_window": [
+        30,
+        120
+      ],
+      "congestion_window": [
+        30,
+        135
+      ],
+      "static_peak_window": [
+        30,
+        150
+      ],
+      "horizon": 180.0
+    }
+  ],
+  "policies": {
+    "S0": {
+      "name": "S0 Static timetable (baseline)",
+      "kind": "static",
+      "H_peak": 2.5,
+      "H_off": 5.0,
+      "max_hold": 2.0,
+      "min_load": 0.6,
+      "rebal_thr": null,
+      "init_at_A": null
+    },
+    "S1": {
+      "name": "S1 Static, denser timetable",
+      "kind": "static",
+      "H_peak": 2.0,
+      "H_off": 4.0,
+      "max_hold": 2.0,
+      "min_load": 0.6,
+      "rebal_thr": null,
+      "init_at_A": null
+    },
+    "S2": {
+      "name": "S2 Dynamic dispatch",
+      "kind": "dynamic",
+      "H_peak": 2.0,
+      "H_off": 4.0,
+      "max_hold": 2.0,
+      "min_load": 1.0,
+      "rebal_thr": null,
+      "init_at_A": null
+    },
+    "S3": {
+      "name": "S3 Dynamic + rebalancing",
+      "kind": "dynamic",
+      "H_peak": 2.0,
+      "H_off": 4.0,
+      "max_hold": 2.0,
+      "min_load": 1.0,
+      "rebal_thr": 50,
+      "init_at_A": null
+    },
+    "S4": {
+      "name": "S4 Tuned dynamic",
+      "kind": "dynamic",
+      "H_peak": 2.0,
+      "H_off": 4.0,
+      "max_hold": 1.0,
+      "min_load": 1.0,
+      "rebal_thr": 50,
+      "init_at_A": null
+    }
+  },
+  "replications": {
+    "train": 10,
+    "final": 30,
+    "sensitivity": 20
+  },
+  "fleet_equivalence_min_fleet_matching_baseline_wait": {
+    "S0": 38,
+    "S1": 28,
+    "S3": 24,
+    "S4": 26
+  },
+  "baseline_reference_mean_wait_min": 12.32097557984645,
+  "quick": false,
+  "runtime_s": 50.5
+}
